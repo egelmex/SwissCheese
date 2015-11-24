@@ -41,7 +41,7 @@ parser.add_argument('-x','--xml',dest='xml_output',help='Store output in an XML 
 parser.add_argument('--timeout',dest='timeout',help='Specify the maximum timeout in seconds allowed for connectivity checks. Default value is set to 4 seconds. Lower values are less accurate.',required=False,default=4,type=int)
 parser.add_argument('--default-ssl',dest='ssl',help='Enable this option in place of -p to use the most common SSL/TLS ports',action='store_true',default=False)
 parser.add_argument('--path',dest='path_scan',help='Enter the URI path for header checking: E.g. "--path login.php" for https://test.com/login.php',required=False,nargs="+")
-parser.add_argument('--cheese',dest=cheese,action='store_true',default=False)
+parser.add_argument('--cheese',dest='cheese',action='store_true',default=False)
 args = parser.parse_args()
 
 # Argument > Variables
