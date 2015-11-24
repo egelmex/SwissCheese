@@ -54,7 +54,7 @@ global cert_bool
 
 # Missing input
 if not ports and not args.ssl:
-    sys.exit(clr.red + "[*]" + clr.std + "Error: Port(s) must be selected either with -p [portnumber] or by using --default-ssl.")
+    sys.exit(clr.red + "[_]" + clr.std + "Error: Port(s) must be selected either with -p [portnumber] or by using --default-ssl.")
 
 if not path_scan:
     path_scan = "/"
@@ -77,7 +77,7 @@ def check_ica_cert(a,p,t):
     try:
         time.sleep(t)
     except KeyboardInterrupt:
-        sys.exit(clr.red + "[*]" + clr.std + "Exiting...")
+        sys.exit(clr.red + "\n[_]" + clr.std + "Exiting...\n")
     read_ica = ('openssl x509 -inform DER -outform PEM -in /tmp/server.crt -text -noout </dev/null 2>/dev/null | grep "Signature Algorithm" | cut -d " " -f 7 | uniq')
     return os.popen(read_ica).read()
 
@@ -128,13 +128,13 @@ def get_headers(a,p,x,uri_list):
 
     ## Generic header thingies
     for uri_path in uri_list:
-        print (clr.green + "\n[*] " + clr.std + "URI Path: " + clr.green + str(uri_path))
+        print (clr.green + "\n\t[+] " + clr.std + "URI Path: " + clr.green + str(uri_path))
         try:
             response = (urlopen("https://" + a + ":" + p + uri_path))
 #            headers = response.getheaders()
         
         except:
-            print (clr.red + "\t[*] " + clr.std + "Cannot retrieve page headers. Verify manually.")
+            print (clr.red + "\t[_] " + clr.std + "Cannot retrieve page headers. Verify manually.")
             return
 
         headers = response.getheaders()
@@ -166,50 +166,50 @@ def get_headers(a,p,x,uri_list):
 
         if len(h_pin) == 0:
             pin_count += 1
-            print (clr.red + "\t[*] " + clr.std + "HTTP Public Key Pinning is not supported.")
+            print (clr.red + "\t[_] " + clr.std + "HTTP Public Key Pinning is not supported.")
         else:
-            print (clr.green + "\t[*] " + clr.std + "HTTP Public Key Pinning is supported:" + clr.std)
+            print (clr.green + "\t[+] " + clr.std + "HTTP Public Key Pinning is supported:" + clr.std)
             for pin in h_pin:
                 if "pin-" in pin:
-                    print (clr.green + "\t\t[*] " + clr.std + "\t\t" + clr.green + pin.strip() + clr.std)
+                    print (clr.green + "\t\t[-] " + clr.green + pin.strip() + clr.std)
                 else:
-                    print (clr.green + "\t\t[*] " + clr.std + "\t\t" + clr.green + pin.strip() + clr.std)
+                    print (clr.green + "\t\t[-] " + clr.green + pin.strip() + clr.std)
 
         if len(h_csp) == 0:
             csp_count += 1
-            print (clr.yellow + "\t[*] " + clr.std + "Content Security Policy is not set.")
+            print (clr.yellow + "\t[_] " + clr.std + "Content Security Policy is not set.")
         else:
-            print (clr.green + "\t[*] " + clr.std + "Content Security Policy is set:")
+            print (clr.green + "\t[+] " + clr.std + "Content Security Policy is set:")
             for csp in h_csp:
-                print (clr.green + "\t\t[*] " + clr.green + "\t\t" + csp.strip() + clr.std)
+                print (clr.green + "\t\t[-] " + clr.green + csp.strip() + clr.std)
 
         if len(h_click) == 0:
             click_count += 1
-            print (clr.red + "\t[*] " + clr.std + "X-Frame-Options is not set.")
+            print (clr.red + "\t[_] " + clr.std + "X-Frame-Options is not set.")
         else:
-            print (clr.green + "\t[*] " + clr.std + "X-Frame-Options is set:")
+            print (clr.green + "\t[+] " + clr.std + "X-Frame-Options is set:")
             for click in h_click:
-                print (clr.green + "\t\t[*] " + clr.green + "\t\t" + click.strip() + clr.std)
+                print (clr.green + "\t\t[-] " + clr.green + click.strip() + clr.std)
 
         if len(h_xss) == 0:
             xss_count += 1
-            print (clr.yellow + "\t[*] " + clr.std + "X-XSS-Protection is not set.")
+            print (clr.yellow + "\t[_] " + clr.std + "X-XSS-Protection is not set.")
         else:
-            print (clr.green + "\t[*] " + clr.std + "X-XSS-Protection is set:")
+            print (clr.green + "\t[+] " + clr.std + "X-XSS-Protection is set:")
             for xss in h_xss:
-                print (clr.green + "\t\t[*] " + clr.green + "\t\t" + xss.strip() + clr.std)
+                print (clr.green + "\t\t[-] " + clr.green + xss.strip() + clr.std)
                 
         if len(h_hsts) == 0:
             hsts_count += 1
-            print (clr.yellow + "\t[*] " + clr.std + "Strict-Transport-Security is not set.")
+            print (clr.yellow + "\t[_] " + clr.std + "Strict-Transport-Security is not set.")
         else:
-            print (clr.green + "\t[*] " + clr.std + "Strict-Transport-Security is set:")
+            print (clr.green + "\t[+] " + clr.std + "Strict-Transport-Security is set:")
             for hsts in h_hsts:
                 if not "preload" == hsts.strip():
                     hsts_preload = True
-                print (clr.green + "\t\t[*] " + clr.green + "\t\t" + hsts.strip() + clr.std)
+                print (clr.green + "\t\t[-] " + clr.green + hsts.strip() + clr.std)
             if hsts_preload:
-                print (clr.yellow + "\t\t[*] " + clr.std + "\t\tHSTS Preload is not configured." + clr.std)
+                print (clr.yellow + "\t\t[_] " + clr.std + "HSTS Preload is not configured." + clr.std)
 
         if pin_count > 0 and x:
             ip_by_host = socket.gethostbyname(a)
@@ -242,7 +242,7 @@ def check_port(a,p,t):
         s.close()
         return True
     except KeyboardInterrupt:
-        sys.exit(clr.red + "[*]" + clr.std + "Exiting...")
+        sys.exit(clr.red + "[_]" + clr.std + "Exiting...")
     # Port is closed.
     except:
         return False
@@ -259,7 +259,7 @@ def search_range(r,ps,xml,xo,t):
         cert = False
     # Output to stdout
     if cert:
-        scrn_out = (clr.green + "\n[*] " + clr.std + str(ip) + ":" + str(port) + clr.green + " - " + clr.std + str(host_by_ip + "\n"))
+        scrn_out = (clr.green + "\n[+] " + clr.std + str(ip) + ":" + str(port) + clr.green + " - " + clr.std + str(host_by_ip + "\n"))
         if 'sha1' in cert:
             hashclr = clr.red
             vuln_id = "SC-1929"
@@ -288,7 +288,7 @@ def search_range(r,ps,xml,xo,t):
                 xml = xml + ("</latest_discovery></item>")
         else:
             xml = xml + ("</latest_discovery></item>")
-        scrn_out = scrn_out + (clr.green + "[*] " + clr.std + "Cert: " + hashclr + cert + ica_alg)
+        scrn_out = scrn_out + (clr.green + "\t[+] " + clr.std + "Cert: " + hashclr + cert + ica_alg)
         os.popen("rm /tmp/server.crt  </dev/null 2>/dev/null")
 
         if ((x_count > 0) and (xo)):
@@ -297,7 +297,7 @@ def search_range(r,ps,xml,xo,t):
         return (scrn_out, True)
 
     else:
-        scrn_out = scrn_out + (clr.red + "[*]" + clr.std + " Cannot retrieve certificate. Port may not be SSL/TLS.\n")
+        scrn_out = scrn_out + (clr.red + "\t[+]" + clr.std + " Cannot retrieve certificate. Port may not be SSL/TLS.\n")
         return (scrn_out, False)
 
 # Hostname main function, which calls the others. Cycles iteratively through hosts:ports.
@@ -313,7 +313,7 @@ def search_host(name,p,xml,x,t):
     except:
         cert = ""
     # Output to stdout
-    scrn_out = (clr.green + "\n[*] " + clr.std + str(ip_by_host) + ":" + str(port) + clr.green + " - " + clr.std + str(name) + "\n")
+    scrn_out = (clr.green + "\n[+] " + clr.std + str(ip_by_host) + ":" + str(port) + clr.green + " - " + clr.std + str(name) + "\n")
     if cert:
         if (str(cert) == "sha1WithRSAEncryption"):
             hashclr = clr.red
@@ -346,7 +346,7 @@ def search_host(name,p,xml,x,t):
                 xml = xml + ("</latest_discovery></item>")
         else:
             xml = xml + ("</latest_discovery></item>")
-        scrn_out = scrn_out + (clr.green + "[*] " + clr.std + "Cert: " + hashclr + (str(cert)).rstrip() + clr.std + ica_alg)
+        scrn_out = scrn_out + (clr.green + "\t[+] " + clr.std + "Cert: " + hashclr + (str(cert)).rstrip() + clr.std + ica_alg)
 
         os.popen("rm /tmp/server.crt  </dev/null 2>/dev/null")
         if x_count > 0 and x:
@@ -354,7 +354,7 @@ def search_host(name,p,xml,x,t):
                 xml_file.write(xml)
         return (scrn_out, True)
     else:
-        scrn_out = scrn_out + (clr.red + "[*] " + clr.red + "Cannot retrieve certificate." + clr.std)
+        scrn_out = scrn_out + (clr.red + "\t[_] " + clr.red + "Cannot retrieve certificate." + clr.std)
         return (scrn_out, False)
 
 def check_fs(host,port,xml,x):
@@ -385,7 +385,7 @@ if __name__ == "__main__":
         # Address verification
         if "-" in str(ip_range):
             parser.print_help()
-            print (clr.red + "\n[*] " + clr.std + "Start and end addresses are not supported.")
+            print (clr.red + "\n[_] " + clr.std + "Start and end addresses are not supported.")
             sys.exit()
 
         for raw_range in ip_range:
@@ -406,16 +406,16 @@ if __name__ == "__main__":
                                 print (check_ssl_tls(ip,port,output).rstrip())
                                 fs_supp = check_fs(ip,port,xml,output)
                                 if (str(fs_supp) == "True") and (cert_bool):
-                                    print (clr.green + "\t[*] " + clr.std + "Forward Secrecy is supported.")
+                                    print (clr.green + "\t[+] " + clr.std + "Forward Secrecy is supported.")
                                 elif (str(fs_supp) == "False") or (not cert_bool):
-                                    print (clr.red + "\t[*] " + clr.std + "Forward Secrecy is not supported.")
+                                    print (clr.red + "\t[_] " + clr.std + "Forward Secrecy is not supported.")
                                 get_headers(ip,port,output,path_scan)
             except:
                 print (str(sys.exc_info()))
                 break
 
         if output:
-            print (clr.yellow + "\n[*] " + clr.std + "Output saved as XML in file " + clr.green + "./" + current_time + ".xml")
+            print (clr.yellow + "\n[+] " + clr.std + "Output saved as XML in file " + clr.green + "./" + current_time + ".xml")
 
     # Run hostname check
     elif hosts:
@@ -435,13 +435,13 @@ if __name__ == "__main__":
 			# Check for Forward Secrecy Support
                         fs_supp = check_fs(host,port,xml,output)
                         if (str(fs_supp) == "True") and (cert_bool):
-                            print (clr.green + "\t[*] " + clr.std + "Forward Secrecy is supported.")
+                            print (clr.green + "\t[+] " + clr.std + "Forward Secrecy is supported.")
                         elif (str(fs_supp) == "False") or (not cert_bool):
-                            print (clr.red + "\t[*] " + clr.std + "Forward Secrecy is not supported.")
+                            print (clr.red + "\t[_] " + clr.std + "Forward Secrecy is not supported.")
                         #check_hpkp(host,port,output) ## HPKP Check
                         get_headers(host,port,output,path_scan)
         if output:
-            print (clr.yellow + "\n[*] " + clr.std + "Output saved as XML in file " + clr.green + current_time + ".xml")
+            print (clr.yellow + "\n[+] " + clr.std + "Output saved as XML in file " + clr.green + current_time + ".xml")
 
     # Run file input check
     elif args.file_import:
@@ -459,9 +459,9 @@ if __name__ == "__main__":
                                 print (check_ssl_tls(raw_line,port,output).rstrip())
                                 fs_supp = check_fs(raw_line,port,xml,output)
                                 if (str(fs_supp) == "True") and (cert_bool):
-                                    print (clr.green + "\t[*] " + clr.std + "Forward Secrecy is supported.")
+                                    print (clr.green + "\t[+] " + clr.std + "Forward Secrecy is supported.")
                                 elif (str(fs_supp) == "False") or (not cert_bool):
-                                    print (clr.red + "\t[*] " + clr.std + "Forward Secrecy is not supported.")
+                                    print (clr.red + "\t[_] " + clr.std + "Forward Secrecy is not supported.")
                                 get_headers(raw_line,port,output)
                 elif '/' in raw_line:
                     for ip in address_range:
@@ -479,9 +479,9 @@ if __name__ == "__main__":
                                     print (check_ssl_tls(ip,port,output).rstrip())
                                     fs_supp = check_fs(ip,port,xml,output)
                                     if (str(fs_supp) == "True") and (cert_bool):
-                                        print (clr.green + "\t[*] " + clr.std + "Forward Secrecy is supported.")
+                                        print (clr.green + "\t[+] " + clr.std + "Forward Secrecy is supported.")
                                     elif (str(fs_supp) == "False") or (not cert_bool):
-                                        print (clr.red + "\t[*] " + clr.std + "Forward Secrecy is not supported.")
+                                        print (clr.red + "\t[_] " + clr.std + "Forward Secrecy is not supported.")
                                     get_headers(ip,port,output)
     
     else:
