@@ -67,7 +67,7 @@ if args.cheese:
     gromit = gromit + ("                 `\  /'                |      |              \n")
     gromit = gromit + ("                 /`-.-`\_             /        \    \n")
     gromit = gromit + ("           _..:;\._/V\_./:;.._       /   .--.   \   \n")
-    gromit = gromit + ("          .'/;:;:;\ /^\ /:;:;:\'.     |  (    )  |    \n")
+    gromit = gromit + ("         .'/;:;:;\ /^\ /:;:;:\'.      |  (    )  |    \n")
     gromit = gromit + ("        / /;:;:;:;\| |/:;:;:;:\ \    _\  '--'  /__      \n")
     gromit = gromit + ("       / /;:;:;:;:;\_/:;:;:;:;:\ \ .'  '-.__.-'   `-.   \n\n")
     gromit = gromit + ("                      'No cheese, Gromit'  \n")
