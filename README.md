@@ -46,41 +46,26 @@ optional arguments:
 _________________________________________ Version 1.0.0 _
 
 
-[*] 66.228.46.122:443 - ins1gn1a.com
-[*] Cert: sha256WithRSAEncryption - ICA: sha384WithRSAEncryption
+[+] 66.228.46.122:443 - ins1gn1a.com
+	[+] Cert: sha256WithRSAEncryption - ICA: sha384WithRSAEncryption
 		[-] SSLv3 is Not Supported.
 		[-] TLSv1.0 is Not Supported.
 		[-] TLSv1.1 is Supported.
 		[-] TLSv1.2 is Supported.
-	[*] Forward Secrecy is supported.
+	[+] Forward Secrecy is supported.
 
-[*] URI Path: /
-	[*] HTTP Public Key Pinning is supported:
-		[*] 		pin-sha256="wXbLzu1H1P1DKCwINgLk4mmeoUd+IwQ8v4Kxey35obM="
-		[*] 		pin-sha256="nl30q/LLzDilu0AFWRMy6En0iwkiOIMaWkBxui0RRf0="
-		[*] 		max-age=31536000
-		[*] 		includeSubDomains
-	[*] Content Security Policy is not set.
-	[*] X-Frame-Options is set:
-		[*] 		SAMEORIGIN
-	[*] X-XSS-Protection is not set.
-	[*] Strict-Transport-Security is set:
-		[*] 		max-age=31536000
-		[*] 		includeSubdomains
-		[*] 		HSTS Preload is not configured.
-
-[*] URI Path: /other-things/
-	[*] HTTP Public Key Pinning is supported:
-		[*] 		pin-sha256="wXbLzu1H1P1DKCwINgLk4mmeoUd+IwQ8v4Kxey35obM="
-		[*] 		pin-sha256="nl30q/LLzDilu0AFWRMy6En0iwkiOIMaWkBxui0RRf0="
-		[*] 		max-age=31536000
-		[*] 		includeSubDomains
-	[*] Content Security Policy is not set.
-	[*] X-Frame-Options is set:
-		[*] 		SAMEORIGIN
-	[*] X-XSS-Protection is not set.
-	[*] Strict-Transport-Security is set:
-		[*] 		max-age=31536000
-		[*] 		includeSubdomains
-		[*] 		HSTS Preload is not configured.
+	[+] URI Path: /
+	[+] HTTP Public Key Pinning is supported:
+		[-] pin-sha256="wXbLzu1H1P1DKCwINgLk4mmeoUd+IwQ8v4Kxey35obM="
+		[-] pin-sha256="nl30q/LLzDilu0AFWRMy6En0iwkiOIMaWkBxui0RRf0="
+		[-] max-age=31536000
+		[-] includeSubDomains
+	[_] Content Security Policy is not set.
+	[+] X-Frame-Options is set:
+		[-] SAMEORIGIN
+	[_] X-XSS-Protection is not set.
+	[+] Strict-Transport-Security is set:
+		[-] max-age=31536000
+		[-] includeSubdomains
+		[_] HSTS Preload is not configured.
 ```
