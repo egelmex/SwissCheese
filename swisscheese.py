@@ -62,7 +62,7 @@ if args.cheese:
     gromit = gromit + ("            ( ( | .--. | ) )     .',_ '.      .' _,'.\n")
     gromit = gromit + ("             '-/ (    ) \-'     / /' `\ \ __ / /' `\ \\n")
     gromit = gromit + ("              /   '--'   \     / /     \.'  './     \ \\n")
-    gromit = gromit + ("              \ `"===="` /     `-`     : _  _ :      `-`\n")
+    gromit = gromit + ("              \ `\====/` /     `-`     : _  _ :      `-`\n")
     gromit = gromit + ("               `\      /'              |(o)(o)|\n")
     gromit = gromit + ("                 `\  /'                |      |\n")
     gromit = gromit + ("                 /`-.-`\_             /        \\n")
